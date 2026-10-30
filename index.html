@@ -1,0 +1,32 @@
+<!-- Main webpage setup -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Webpage scales properly on different screens -->
+        <title>Tyler & Aiden COMP 3301 Project</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <h1>Human Pose to Pixel Generation</h1>
+        <main>
+            <section>
+                <h2>Webcam Feed</h2>
+                <video id="webcam" autoplay playsinline></video>
+                <!-- This will eventually show webcam -->
+                <!-- id: for js to find -->
+                <!-- autoplay: starts playback when video stream attached -->
+                <!-- playsinline: allows inline playback on mobile -->
+            </section>
+            <section>
+                <h2>Pixel Output</h2>
+                <canvas id="pixel-canvas" width="32" height="32"></canvas>
+                <!-- Drawing res is 32x32, enlarged using css -->
+            </section>
+        </main>
+        <script type="module" src="javascript/main.js"></script>
+    </body>
+</html>

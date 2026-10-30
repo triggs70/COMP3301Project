@@ -1,0 +1,33 @@
+/* Webage styling */
+
+/* Dark bg and white text */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #202020;
+    color: white;
+}
+
+/* Layout for webcam and pixel boxes */
+main {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* Webcam box setup */
+#webcam {
+    width: 320px;
+    height: 320px;
+    background-color: black;
+    object-fit: contain;
+}
+
+/* Pixel canvas setup */
+#pixel-canvas {
+    width: 320px;
+    height: 320px;
+    background-color: white;
+    image-rendering: pixelated;
+}
