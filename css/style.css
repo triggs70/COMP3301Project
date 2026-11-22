@@ -1,33 +1,84 @@
-/* Webage styling */
+/* Webpage Styling */
 
-/* Dark bg and white text */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #202020;
     color: white;
+    margin: 0;
+    padding: 20px;
 }
 
-/* Layout for webcam and pixel boxes */
 main {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    align-items: flex-start;
+    gap: 30px;
     flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 20px auto;
 }
 
-/* Webcam box setup */
+main section {
+    width: 100%;
+    max-width: 480px;
+}
+
+#webcam, #pixel-canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    box-sizing: border-box;
+    border: 2px solid #555;
+    border-radius: 4px;
+}
+
 #webcam {
-    width: 320px;
-    height: 320px;
     background-color: black;
     object-fit: contain;
 }
 
-/* Pixel canvas setup */
 #pixel-canvas {
-    width: 320px;
-    height: 320px;
     background-color: white;
     image-rendering: pixelated;
+}
+
+#fps-counter {
+    font-size: 18px;
+    font-weight: bold;
+    color: #22c55e;
+}
+
+.controls {
+    margin: 15px 0;
+}
+
+#pause-button {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 22px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#pause-button:hover {
+    background-color: #2563eb;
+}
+
+#pause-button:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 3px;
+}
+
+.project-info {
+    max-width: 750px;
+    margin: 35px auto;
+    padding: 20px;
+    background-color: #2b2b2b;
+    border-radius: 8px;
+    line-height: 1.6;
 }
