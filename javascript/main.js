@@ -16,15 +16,24 @@ let isPaused = false;
 let frozenLandmarks = null;
 let demoMode = false;
 const mockLandmarks = createMockLandmarks();
+const testButton = document.getElementById("test-button");
+const testResult = document.getElementById("test-result");
+const testDuration = 30000;
+let isTesting = false;
+let testStart = 0;
+let testFrames = 0;
 
 
 pauseButton.addEventListener("click", () => {
     isPaused = !isPaused;
     pauseButton.textContent = isPaused ? "Resume Character" : "Pause Character";
+    testButton.disabled = isPaused;
     if (!isPaused) {
         frozenLandmarks = null;
     }
 });
+
+testButton.addEventListener("click", startTest);
 
 
 /* Calculate the rendering frames per second */
@@ -38,6 +47,49 @@ function updateFps(currentTime) {
         frameCount = 0;
         lastFpsUpdate = currentTime;
     }
+}
+
+
+/* FPS test start function */
+function startTest() {
+    if (isPaused || isTesting) {
+        return;
+    }
+    isTesting = true;
+    testStart = performance.now();
+    testFrames = 0;
+    testButton.disabled = true;
+    pauseButton.disabled = true;
+    testButton.textContent = "Testing";
+    testResult.textContent = "Testing FPS: 30s remaining";
+}
+
+
+/*FPS test update function */
+function updateTest() {
+    if (!isTesting) {
+        return;
+    }
+    testFrames++;
+    const elapsedTestTime = performance.now() - testStart;
+    if (elapsedTestTime >= testDuration) {
+        finishTest(elapsedTestTime);
+        return;
+    }
+    const remainingTime = Math.ceil((testDuration - elapsedTestTime) / 1000);
+    testResult.textContent = `Test time remaining: ${remainingTime}s`;
+}
+
+
+/* Finalize FPS Test */
+function finishTest(elapsedTestTime) {
+    isTesting = false;
+    const elapsedSeconds = elapsedTestTime / 1000;
+    const avgFps = testFrames / elapsedSeconds;
+    testResult.textContent = `Average FPS: ${avgFps.toFixed(2)}`;
+    testButton.disabled = false;
+    pauseButton.disabled = false;
+    testButton.textContent = "Start FPS Test";
 }
 
 
@@ -101,6 +153,7 @@ function renderFrame(elapsedTime) {
         drawCharacter(ctx, currentLandmarks);
     }
     updateFps(elapsedTime);
+    updateTest();
     requestAnimationFrame(renderFrame);
 }
 

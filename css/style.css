@@ -54,7 +54,7 @@ main section {
     margin: 15px 0;
 }
 
-#pause-button {
+#pause-button, #test-button {
     background-color: #3b82f6;
     color: white;
     border: none;
@@ -65,13 +65,24 @@ main section {
     cursor: pointer;
 }
 
-#pause-button:hover {
+#pause-button:hover, #test-button:hover {
     background-color: #2563eb;
 }
 
-#pause-button:focus-visible {
+#pause-button:focus-visible, #test-button:focus-visible {
     outline: 3px solid white;
     outline-offset: 3px;
+}
+
+#pause-button:disabled, #test-button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+}
+
+#test-result {
+    font-size: 18px;
+    font-weight: bold;
+    color: #22c55e;
 }
 
 .project-info {
